@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bpbwg05vxhpo1"]
+
+[ext_resource type="PackedScene" uid="uid://cwangc63negsq" path="res://assets/bagan_-_khayiminga_temple_interior.glb" id="1_0l8dl"]
+[ext_resource type="Script" path="res://CharacterBody3D.gd" id="2_71yhk"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hoyl7"]
+radius = 0.4
+height = 1.6
+
+[node name="Main" type="Node3D"]
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_0l8dl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.167899, 0.00589955, 0.000244856)
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("2_71yhk")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.202019, 0.311764, -1.80672)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.203573, -0.116567, -1.76322)
+shape = SubResource("CapsuleShape3D_hoyl7")

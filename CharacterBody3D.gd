@@ -3,12 +3,20 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+var mouse_sensitivity = 0.002
+@onready var xr_camera_3d = $XROrigin3D/XRCamera3D
+@onready var camera_3d = $Camera3D
 
-#basic 3d setup
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func _input(event):
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		rotate_y(-event.relative.x * mouse_sensitivity)
+		#xr_camera_3d.rotate_x(-event.relative.y * mouse_sensitivity)
+		#xr_camera_3d.rotation.x = clampf(xr_camera_3d.rotation.x, -deg_to_rad(70), deg_to_rad(70))
+		camera_3d.rotate_x(-event.relative.y * mouse_sensitivity)
+		camera_3d.rotation.x = clampf(xr_camera_3d.rotation.x, -deg_to_rad(70), deg_to_rad(70))
 
 func _physics_process(delta):
 	# Add the gravity.
